@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4813935359234428322, guid: 49737e2ba72c0b04d8af9a80a15a5e53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4813935359234428322, guid: 49737e2ba72c0b04d8af9a80a15a5e53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4813935359234428322, guid: 49737e2ba72c0b04d8af9a80a15a5e53, type: 3}
       propertyPath: m_LocalPosition.z
@@ -180,6 +180,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49737e2ba72c0b04d8af9a80a15a5e53, type: 3}
+--- !u!1 &259833682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259833683}
+  - component: {fileID: 259833684}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259833683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259833682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1530442474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259833684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259833682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac69f109bea1b9649b128d9962d1fa56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  turnNumber: 0
 --- !u!1 &557005786
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,54 +257,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1530442474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &557413015
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 557413016}
-  - component: {fileID: 557413017}
-  m_Layer: 0
-  m_Name: ResourceSpawnManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &557413016
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557413015}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1530442474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &557413017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557413015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae850ea96f3b3034993bdea953a554ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceTypes:
-  - {fileID: 11400000, guid: d9490db7adfa6154ea063cfec67555b4, type: 2}
-  totalResourceCount: 50
-  SpawnedResourceContainer: {fileID: 2116600593}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -25578,10 +25576,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridDebugObjectPrefab: {fileID: 2456566718100475980, guid: 8bd79d0cdbb775b4abd5fa50977de453, type: 3}
   gridDebugObjectPrefabParent: {fileID: 2002609365}
-  spawnGridDebugObjects: 1
+  spawnGridDebugObjects: 0
   spawnGridDebugLines: 1
-  width: 50
-  height: 50
+  width: 20
+  height: 20
   cellSize: 1
 --- !u!4 &959840484
 Transform:
@@ -25713,7 +25711,7 @@ Transform:
   - {fileID: 959840484}
   - {fileID: 1228500666}
   - {fileID: 557005787}
-  - {fileID: 557413016}
+  - {fileID: 259833683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1621582642

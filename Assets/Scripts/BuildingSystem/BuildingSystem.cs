@@ -32,11 +32,17 @@ public class BuildingSystem : MonoBehaviour
         {
             buildingGhost.gameObject.SetActive(false);
         }
-
+  
         if (isBuilding)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (TurnManager.Instance.currentState != TurnManager.TurnState.PlayerTurn)
+                {
+                    Debug.Log("Can only build during your turn");
+                    return;
+                }
+
                 GridPosition gridWorldPosition = LevelGrid.Instance.GetGridPosition(MousePosition2D.GetPosition());
                 if (LevelGrid.Instance.IsValidGridPosition(gridWorldPosition))
                 {

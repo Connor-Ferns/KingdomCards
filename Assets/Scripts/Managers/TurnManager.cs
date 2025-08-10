@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class TurnManager : MonoBehaviour
 
     public TurnState currentState;
     public int turnNumber = 1;
+    [SerializeField] private TMP_Text turnNumberVisual;
 
     public event Action OnPlayerTurnStart;
     public event Action OnPlayerTurnEnd;
@@ -43,7 +45,7 @@ public class TurnManager : MonoBehaviour
 
     private void StartGame()
     {
-        currentState = TurnState.PlayerTurn;
+        ChangeTurn(TurnState.PlayerTurn);
     }
 
     public void EndPlayerTurn()
@@ -79,8 +81,12 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator ProcessAITurn()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+        Debug.Log("AI thinking... (does nothing yet)");
         OnAITurnEnd?.Invoke();
+
+        turnNumber++;
+        turnNumberVisual.text = "Wave: " + turnNumber.ToString();
         ChangeTurn(TurnState.PlayerTurn);
     }
 }

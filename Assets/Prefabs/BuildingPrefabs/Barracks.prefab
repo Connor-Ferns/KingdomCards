@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9096233862139500264}
   - component: {fileID: 2259336888225193040}
   m_Layer: 0
-  m_Name: SmallCastleVisual
+  m_Name: BarracksVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2936038320878470588}
+  m_Father: {fileID: 2391180473342714691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2259336888225193040
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2008786723, guid: 652ee9fe58bbe5d4099491590a6608a5, type: 3}
+  m_Sprite: {fileID: 1873226327, guid: 6768749b8c29154488891ad3132ba84b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2391180473342714691}
   - component: {fileID: -1217652649118467956}
   m_Layer: 0
-  m_Name: House
+  m_Name: Barracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2936038320878470588}
+  - {fileID: 9096233862139500264}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-1217652649118467956
@@ -132,35 +132,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f145dc2b4690a0e41b635bf31c5f4674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8959769380710658180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2936038320878470588}
-  m_Layer: 0
-  m_Name: CastleVisual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2936038320878470588
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8959769380710658180}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9096233862139500264}
-  m_Father: {fileID: 2391180473342714691}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

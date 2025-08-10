@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4793815cbe7ae7c4fa8b0c9ce8284df4, type: 3}
-  m_Name: House
+  m_Name: Barracks
   m_EditorClassIdentifier: 
-  nameString: House
-  prefab: {fileID: 2391180473342714691, guid: c055423255545ee4e927b307c11b868c, type: 3}
-  visual: {fileID: -2008786723, guid: 652ee9fe58bbe5d4099491590a6608a5, type: 3}
+  nameString: Barracks
+  prefab: {fileID: 2391180473342714691, guid: eca886ba0f3260548957dd0695c76880, type: 3}
+  visual: {fileID: 0}
   width: 1
   height: 1
   canBeDestroyed: 1
-  Offsets:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
+  Offsets: []
   resourceGeneration: []
   buildCosts:
   - resourceType: 1
-    amount: 5
+    amount: 4
+  - resourceType: 2
+    amount: 3
+  - resourceType: 0
+    amount: 2

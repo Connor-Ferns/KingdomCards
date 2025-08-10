@@ -26140,9 +26140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b4eceff7f62b846837fe94a773fbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingFood: 10
-  startingIron: 5
-  startingWood: 10
+  startingFood: 0
+  startingIron: 0
+  startingWood: 0
 --- !u!1 &1228500665
 GameObject:
   m_ObjectHideFlags: 0
@@ -26191,7 +26191,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d1d235eac9d5bd4fb2335bdd4c33b7d, type: 2}
   - {fileID: 11400000, guid: 866e5b3ec1ad59e48b5a704d7d126ae8, type: 2}
   - {fileID: 11400000, guid: 8c16e38e0ca7903429934bd3883d7053, type: 2}
-  - {fileID: 11400000, guid: edf3368787a00e44a8e65df1e5235237, type: 2}
+  - {fileID: 11400000, guid: bfa8a9ab6d37d184ca5ad50d70de9646, type: 2}
+  - {fileID: 11400000, guid: b7bdc09ee52a0334eb9d49bd3c3673dc, type: 2}
   buildingGhost: {fileID: 1621582646}
 --- !u!1 &1397895256
 GameObject:
@@ -26527,7 +26528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5 / 20
+  m_text: 0 / 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -26843,7 +26844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 / 20
+  m_text: 0 / 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -26979,7 +26980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 / 20
+  m_text: 0 / 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

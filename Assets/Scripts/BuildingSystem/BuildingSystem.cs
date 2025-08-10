@@ -100,6 +100,16 @@ public class BuildingSystem : MonoBehaviour
             return;
         }
 
+        // Check if player has enough resources
+        if (currentBuildingType.HasBuildCosts())
+        {
+            if (!ResourceManager.Instance.CanAfford(currentBuildingType.buildCosts))
+            {
+                Debug.Log($"Not enough resources to build {currentBuildingType.nameString}! Need: {currentBuildingType.GetBuildCostText()}");
+                return;
+            }
+        }
+
         // Get the grid position where the mouse is
         Vector3 mouseWorldPos = MousePosition2D.GetPosition();
         GridPosition gridPos = LevelGrid.Instance.GetGridPosition(mouseWorldPos);
@@ -134,6 +144,12 @@ public class BuildingSystem : MonoBehaviour
             return;
         }
 
+        // Spend the resources
+        if (currentBuildingType.HasBuildCosts())
+        {
+            ResourceManager.Instance.TrySpendResources(currentBuildingType.buildCosts);
+        }
+
         // Actually place the building
         Vector3 worldPos = LevelGrid.Instance.GetWorldPosition(gridPos);
         Vector2Int offset = currentBuildingType.GetRotationOffset(buildingDirection);
@@ -153,7 +169,7 @@ public class BuildingSystem : MonoBehaviour
             gridObject.SetPlacedObject(newBuilding);
         }
 
-        Debug.Log("Building placed: " + currentBuildingType.nameString);
+        Debug.Log($"Building placed: {currentBuildingType.nameString}. {currentBuildingType.GetResourceGenerationText()}");
     }
 
     private void DestroyBuilding()

@@ -55,25 +55,26 @@ public class BuildingSystem : MonoBehaviour
                 ExitBuildingMode();
             }
         }
-        
+
         // Press Escape to exit building mode
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitBuildingMode();
         }
-        
+
         // Press R to rotate the building (only works in building mode)
         // if (Input.GetKeyDown(KeyCode.R) && currentMode == Mode.Building)
         // {
         //     buildingDirection = PlacedObjectTypeSO.GetNextDir(buildingDirection);
         //     Debug.Log("Rotated building to: " + buildingDirection);
         // }
-        
+
         // Number keys to select different building types
         if (Input.GetKeyDown(KeyCode.Alpha1)) SelectBuildingType(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SelectBuildingType(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SelectBuildingType(2);
         if (Input.GetKeyDown(KeyCode.Alpha4)) SelectBuildingType(3);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) SelectBuildingType(4);
     }
 
     private void HandleMouseInput()

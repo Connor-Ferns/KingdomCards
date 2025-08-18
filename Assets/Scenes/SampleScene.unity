@@ -26189,10 +26189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypesList:
   - {fileID: 11400000, guid: 6d1d235eac9d5bd4fb2335bdd4c33b7d, type: 2}
-  - {fileID: 11400000, guid: 866e5b3ec1ad59e48b5a704d7d126ae8, type: 2}
   - {fileID: 11400000, guid: 8c16e38e0ca7903429934bd3883d7053, type: 2}
   - {fileID: 11400000, guid: bfa8a9ab6d37d184ca5ad50d70de9646, type: 2}
   - {fileID: 11400000, guid: b7bdc09ee52a0334eb9d49bd3c3673dc, type: 2}
+  - {fileID: 11400000, guid: 866e5b3ec1ad59e48b5a704d7d126ae8, type: 2}
   buildingGhost: {fileID: 1621582646}
 --- !u!1 &1397895256
 GameObject:

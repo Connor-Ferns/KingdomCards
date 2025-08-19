@@ -19,6 +19,7 @@ public class BuildingSystem : MonoBehaviour
     private Mode currentMode = Mode.Normal;
     private PlacedObjectTypeSO currentBuildingType;
     private PlacedObjectTypeSO.Dir buildingDirection = PlacedObjectTypeSO.Dir.Down;
+    private WorldGenerator worldGenerator;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class BuildingSystem : MonoBehaviour
         {
             currentBuildingType = buildingTypesList[0];
         }
+        
+        // Find world generator
+        worldGenerator = FindObjectOfType<WorldGenerator>();
     }
 
     private void Update()
@@ -126,14 +130,43 @@ public class BuildingSystem : MonoBehaviour
         Vector2Int origin = new Vector2Int(gridPos.x, gridPos.y);
         List<Vector2Int> buildingSquares = currentBuildingType.GetGridPositionList(origin, buildingDirection);
 
-        // Check if all squares are free to build on
+        // Check if all squares are free to build on AND have buildable terrain
         bool canBuild = true;
+        string blockReason = "";
+        
         foreach (Vector2Int square in buildingSquares)
         {
             GridObject gridObject = LevelGrid.Instance.GetGridObject(new Vector3(square.x, square.y));
-            if (gridObject == null || !gridObject.CanBuild())
+            
+            if (gridObject == null)
             {
                 canBuild = false;
+                blockReason = "Invalid grid position";
+                break;
+            }
+            
+            // Check terrain
+            if (!gridObject.IsBuildable())
+            {
+                canBuild = false;
+                WorldGenerator.TerrainType terrain = gridObject.GetTerrainType();
+                blockReason = $"Cannot build on {terrain}!";
+                break;
+            }
+            
+            // Check if already occupied
+            if (!gridObject.CanBuild())
+            {
+                canBuild = false;
+                blockReason = "Space is already occupied!";
+                break;
+            }
+            
+            // Check if there's a natural resource here
+            if (gridObject.HasNaturalResource())
+            {
+                canBuild = false;
+                blockReason = "Cannot build on resource nodes!";
                 break;
             }
         }
@@ -141,7 +174,7 @@ public class BuildingSystem : MonoBehaviour
         // If we can't build, show message and stop
         if (!canBuild)
         {
-            Debug.Log("Can't build here - space is occupied!");
+            Debug.Log($"Can't build here - {blockReason}");
             return;
         }
 
@@ -219,6 +252,64 @@ public class BuildingSystem : MonoBehaviour
         if (buildingGhost != null)
         {
             buildingGhost.gameObject.SetActive(currentMode == Mode.Building);
+            
+            // Update ghost color based on whether current position is valid
+            if (currentMode == Mode.Building)
+            {
+                UpdateGhostColor();
+            }
+        }
+    }
+
+    private void UpdateGhostColor()
+    {
+        if (buildingGhost == null) return;
+        
+        Vector3 mouseWorldPos = MousePosition2D.GetPosition();
+        GridPosition gridPos = LevelGrid.Instance.GetGridPosition(mouseWorldPos);
+        
+        // Check if we can build here
+        bool canBuildHere = true;
+        
+        if (!LevelGrid.Instance.IsValidGridPosition(gridPos))
+        {
+            canBuildHere = false;
+        }
+        else
+        {
+            Vector2Int origin = new Vector2Int(gridPos.x, gridPos.y);
+            List<Vector2Int> buildingSquares = currentBuildingType.GetGridPositionList(origin, buildingDirection);
+            
+            foreach (Vector2Int square in buildingSquares)
+            {
+                GridObject gridObject = LevelGrid.Instance.GetGridObject(new Vector3(square.x, square.y));
+                if (gridObject == null || !gridObject.IsBuildable() || !gridObject.CanBuild() || gridObject.HasNaturalResource())
+                {
+                    canBuildHere = false;
+                    break;
+                }
+            }
+        }
+        
+        // Update ghost visual color (you'll need to implement this in BuildingGhost)
+        // For now, we'll just log it
+        if (!canBuildHere)
+        {
+            // Set ghost to red tint
+            var renderers = buildingGhost.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var r in renderers)
+            {
+                r.color = new Color(1f, 0.5f, 0.5f, 0.7f); // Red tint
+            }
+        }
+        else
+        {
+            // Set ghost to normal/green tint
+            var renderers = buildingGhost.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var r in renderers)
+            {
+                r.color = new Color(1f, 1f, 1f, 0.7f); // Normal tint
+            }
         }
     }
 

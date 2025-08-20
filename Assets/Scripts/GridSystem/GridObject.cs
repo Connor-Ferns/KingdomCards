@@ -65,13 +65,14 @@ public class GridObject
 
     // New terrain-related methods
     public void SetTerrainType(WorldGenerator.TerrainType terrain)
-    {
-        terrainType = terrain;
-        // Water and mountains are not buildable
-        isBuildable = (terrain != WorldGenerator.TerrainType.Water && 
-                      terrain != WorldGenerator.TerrainType.Mountain);
-        OnValueChanged?.Invoke(this, EventArgs.Empty);
-    }
+{
+    terrainType = terrain;
+    // Only water, mountains, and rivers are not buildable
+    isBuildable = (terrain != WorldGenerator.TerrainType.Water && 
+                  terrain != WorldGenerator.TerrainType.Mountain &&
+                  terrain != WorldGenerator.TerrainType.River);
+    OnValueChanged?.Invoke(this, EventArgs.Empty);
+}
 
     public WorldGenerator.TerrainType GetTerrainType()
     {

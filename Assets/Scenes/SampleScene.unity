@@ -704,7 +704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &844764635
 Grid:
   m_ObjectHideFlags: 0
@@ -25960,7 +25960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridDebugObjectPrefab: {fileID: 2456566718100475980, guid: 8bd79d0cdbb775b4abd5fa50977de453, type: 3}
   gridDebugObjectPrefabParent: {fileID: 2002609365}
-  spawnGridDebugObjects: 0
+  spawnGridDebugObjects: 1
   spawnGridDebugLines: 1
   width: 50
   height: 50
@@ -26264,6 +26264,99 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1448406172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448406173}
+  - component: {fileID: 1448406176}
+  - component: {fileID: 1448406174}
+  m_Layer: 0
+  m_Name: WorldGenerationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448406173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448406172}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1530442474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1448406174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448406172}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f0e2e73e4176042887ff45fd364e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDebugInfo: 1
+  regenerateKey: 103
+  showInfoKey: 105
+--- !u!114 &1448406176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448406172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde6f3daef0329f4882735b2ee3ae90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: 12345
+  useRandomSeed: 1
+  continentNoiseScale: 0.05
+  detailNoiseScale: 0.15
+  waterLevel: 0.35
+  mountainLevel: 0.75
+  forestLevel: 0.55
+  generateRivers: 1
+  riverCount: 2
+  riverWidth: 0.8
+  resourceDensity:
+    woodDensity: 0.3
+    ironDensity: 0.2
+    foodDensity: 0.15
+    woodAmountMin: 2
+    woodAmountMax: 5
+    ironAmountMin: 1
+    ironAmountMax: 4
+    foodAmountMin: 3
+    foodAmountMax: 6
+  guaranteedResources:
+    minWoodNodes: 3
+    minIronNodes: 2
+    minFoodNodes: 2
+  grassPrefab: {fileID: 4824006639688172620, guid: b5b31ec2a1a923340bcc60c5bd7fa7e7, type: 3}
+  waterPrefab: {fileID: 6008694363687899100, guid: 0a799c72b4373d64ba2bc8f9ed7ba7c4, type: 3}
+  forestPrefab: {fileID: 4824006639688172620, guid: b5b31ec2a1a923340bcc60c5bd7fa7e7, type: 3}
+  mountainPrefab: {fileID: 4021632278277434420, guid: 850c70a0f5ea81b42b1b82e011f29f26, type: 3}
+  sandPrefab: {fileID: 8609324778773279668, guid: a45f2dffe8246c34ebc54c3d7171db5e, type: 3}
+  riverPrefab: {fileID: 6008694363687899100, guid: 0a799c72b4373d64ba2bc8f9ed7ba7c4, type: 3}
+  woodResourcePrefab: {fileID: 8752464240440009618, guid: 7b92969eaa327f440a8022b46bc9838a, type: 3}
+  ironResourcePrefab: {fileID: 0}
+  foodResourcePrefab: {fileID: 0}
 --- !u!1 &1504617281
 GameObject:
   m_ObjectHideFlags: 0
@@ -26336,6 +26429,7 @@ Transform:
   - {fileID: 557005787}
   - {fileID: 259833683}
   - {fileID: 1213818104}
+  - {fileID: 1448406173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1570248434

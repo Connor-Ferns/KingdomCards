@@ -27,7 +27,10 @@ public class WorldGenerator : MonoBehaviour
         public TerrainTile(TerrainType t)
         {
             type = t;
-            isBuildable = (t == TerrainType.Grass || t == TerrainType.Sand);
+            // Can build on grass, sand, and forest (just not on water, mountains, rivers)
+            isBuildable = (t != TerrainType.Water && 
+                        t != TerrainType.Mountain && 
+                        t != TerrainType.River);
             hasResource = false;
         }
     }
@@ -37,13 +40,10 @@ public class WorldGenerator : MonoBehaviour
     {
         [Range(0f, 1f)] public float woodDensity = 0.3f;
         [Range(0f, 1f)] public float ironDensity = 0.2f;
-        [Range(0f, 1f)] public float foodDensity = 0.15f;
         [Range(1, 10)] public int woodAmountMin = 2;
         [Range(1, 10)] public int woodAmountMax = 5;
         [Range(1, 10)] public int ironAmountMin = 1;
         [Range(1, 10)] public int ironAmountMax = 4;
-        [Range(1, 10)] public int foodAmountMin = 3;
-        [Range(1, 10)] public int foodAmountMax = 6;
     }
 
     [System.Serializable]
@@ -52,7 +52,6 @@ public class WorldGenerator : MonoBehaviour
         [Header("Minimum resources per player territory")]
         public int minWoodNodes = 3;
         public int minIronNodes = 2;
-        public int minFoodNodes = 2;
     }
 
     [Header("Generation Settings")]
@@ -86,7 +85,6 @@ public class WorldGenerator : MonoBehaviour
     [Header("Resource Visual Prefabs")]
     [SerializeField] private GameObject woodResourcePrefab;
     [SerializeField] private GameObject ironResourcePrefab;
-    [SerializeField] private GameObject foodResourcePrefab;
     
     private TerrainTile[,] worldMap;
     private LevelGrid levelGrid;
@@ -407,12 +405,6 @@ public class WorldGenerator : MonoBehaviour
             TerrainType.Mountain,
             startX, startY, endX, endY
         );
-        
-        // Place guaranteed food near water
-        PlaceGuaranteedFoodResources(
-            guaranteedResources.minFoodNodes,
-            startX, startY, endX, endY
-        );
     }
 
     void PlaceGuaranteedResource(ResourceManager.ResourceType resourceType, int count, 
@@ -474,54 +466,7 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 
-    void PlaceGuaranteedFoodResources(int count, int startX, int startY, int endX, int endY)
-    {
-        List<Vector2Int> validPositions = new List<Vector2Int>();
-        
-        // Find grass tiles near water
-        for (int x = startX; x < endX; x++)
-        {
-            for (int y = startY; y < endY; y++)
-            {
-                if (worldMap[x, y].type == TerrainType.Grass && !worldMap[x, y].hasResource)
-                {
-                    if (GetDistanceToTerrain(x, y, TerrainType.Water, worldMap, 3) <= 2 ||
-                        GetDistanceToTerrain(x, y, TerrainType.River, worldMap, 2) <= 1)
-                    {
-                        validPositions.Add(new Vector2Int(x, y));
-                    }
-                }
-            }
-        }
-        
-        // If not enough positions near water, use any grass
-        if (validPositions.Count < count)
-        {
-            for (int x = startX; x < endX; x++)
-            {
-                for (int y = startY; y < endY; y++)
-                {
-                    if (worldMap[x, y].type == TerrainType.Grass && !worldMap[x, y].hasResource)
-                    {
-                        if (!validPositions.Contains(new Vector2Int(x, y)))
-                            validPositions.Add(new Vector2Int(x, y));
-                    }
-                }
-            }
-        }
-        
-        // Place food resources
-        for (int i = 0; i < count && i < validPositions.Count; i++)
-        {
-            Vector2Int pos = validPositions[i];
-            worldMap[pos.x, pos.y].hasResource = true;
-            worldMap[pos.x, pos.y].resourceType = ResourceManager.ResourceType.Food;
-            worldMap[pos.x, pos.y].resourceAmount = Random.Range(
-                resourceDensity.foodAmountMin, 
-                resourceDensity.foodAmountMax + 1
-            );
-        }
-    }
+
 
     void PlaceAdditionalResources(int width, int height)
     {
@@ -554,21 +499,7 @@ public class WorldGenerator : MonoBehaviour
                         resourceDensity.ironAmountMin, 
                         resourceDensity.ironAmountMax + 1
                     );
-                }
-                // Food near water
-                else if (worldMap[x, y].type == TerrainType.Grass && roll < resourceDensity.foodDensity)
-                {
-                    if (GetDistanceToTerrain(x, y, TerrainType.Water, worldMap, 3) <= 2 ||
-                        GetDistanceToTerrain(x, y, TerrainType.River, worldMap, 2) <= 1)
-                    {
-                        worldMap[x, y].hasResource = true;
-                        worldMap[x, y].resourceType = ResourceManager.ResourceType.Food;
-                        worldMap[x, y].resourceAmount = Random.Range(
-                            resourceDensity.foodAmountMin, 
-                            resourceDensity.foodAmountMax + 1
-                        );
-                    }
-                }
+                }  
             }
         }
     }
@@ -721,7 +652,6 @@ public class WorldGenerator : MonoBehaviour
         {
             case ResourceManager.ResourceType.Wood: return woodResourcePrefab;
             case ResourceManager.ResourceType.Iron: return ironResourcePrefab;
-            case ResourceManager.ResourceType.Food: return foodResourcePrefab;
             default: return null;
         }
     }

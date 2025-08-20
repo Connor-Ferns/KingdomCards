@@ -68,7 +68,6 @@ public class WorldGenerationTester : MonoBehaviour
         // Count resources
         int woodResources = 0;
         int ironResources = 0;
-        int foodResources = 0;
         
         // Separate by territory
         int playerWood = 0, playerIron = 0, playerFood = 0;
@@ -123,11 +122,6 @@ public class WorldGenerationTester : MonoBehaviour
                             if (isPlayerTerritory) playerIron++;
                             else aiIron++;
                             break;
-                        case ResourceManager.ResourceType.Food:
-                            foodResources++;
-                            if (isPlayerTerritory) playerFood++;
-                            else aiFood++;
-                            break;
                     }
                 }
             }
@@ -149,21 +143,18 @@ public class WorldGenerationTester : MonoBehaviour
         Debug.Log($"Buildable Tiles: {buildableTiles} ({GetPercentage(buildableTiles, totalTiles)}%)");
         
         Debug.Log("--- Resource Distribution ---");
-        Debug.Log($"Total Resources: Wood={woodResources}, Iron={ironResources}, Food={foodResources}");
         Debug.Log($"Player Territory: Wood={playerWood}, Iron={playerIron}, Food={playerFood}");
         Debug.Log($"AI Territory: Wood={aiWood}, Iron={aiIron}, Food={aiFood}");
         
         // Check balance
         float woodBalance = Mathf.Abs(playerWood - aiWood) / (float)Mathf.Max(1, woodResources);
         float ironBalance = Mathf.Abs(playerIron - aiIron) / (float)Mathf.Max(1, ironResources);
-        float foodBalance = Mathf.Abs(playerFood - aiFood) / (float)Mathf.Max(1, foodResources);
         
         Debug.Log("--- Territory Balance ---");
         Debug.Log($"Wood Imbalance: {woodBalance:P0}");
         Debug.Log($"Iron Imbalance: {ironBalance:P0}");
-        Debug.Log($"Food Imbalance: {foodBalance:P0}");
         
-        if (woodBalance > 0.3f || ironBalance > 0.3f || foodBalance > 0.3f)
+        if (woodBalance > 0.3f || ironBalance > 0.3f)
         {
             Debug.LogWarning("Resource distribution is imbalanced! Consider regenerating.");
         }

@@ -26337,17 +26337,13 @@ MonoBehaviour:
   resourceDensity:
     woodDensity: 0.3
     ironDensity: 0.2
-    foodDensity: 0.15
     woodAmountMin: 2
     woodAmountMax: 5
     ironAmountMin: 1
     ironAmountMax: 4
-    foodAmountMin: 3
-    foodAmountMax: 6
   guaranteedResources:
     minWoodNodes: 3
     minIronNodes: 2
-    minFoodNodes: 2
   grassPrefab: {fileID: 4824006639688172620, guid: b5b31ec2a1a923340bcc60c5bd7fa7e7, type: 3}
   waterPrefab: {fileID: 6008694363687899100, guid: 0a799c72b4373d64ba2bc8f9ed7ba7c4, type: 3}
   forestPrefab: {fileID: 4824006639688172620, guid: b5b31ec2a1a923340bcc60c5bd7fa7e7, type: 3}
@@ -26356,7 +26352,6 @@ MonoBehaviour:
   riverPrefab: {fileID: 6008694363687899100, guid: 0a799c72b4373d64ba2bc8f9ed7ba7c4, type: 3}
   woodResourcePrefab: {fileID: 8752464240440009618, guid: 7b92969eaa327f440a8022b46bc9838a, type: 3}
   ironResourcePrefab: {fileID: 0}
-  foodResourcePrefab: {fileID: 0}
 --- !u!1 &1504617281
 GameObject:
   m_ObjectHideFlags: 0
